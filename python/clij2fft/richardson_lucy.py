@@ -136,6 +136,8 @@ def richardson_lucy_nc(img, psf, numiterations, regularizationfactor=0, lib=None
     print('calling convcorr',platform, device)
     # the normalization factor is the valid region correlated with the PSF
     lib.convcorr3d_32f(int(normal.shape[2]), int(normal.shape[1]), int(normal.shape[0]), valid, shifted_psf, normal,1,platform,device)
+    lib.cleanup()
+    lib = getlib()
 
     # get rid of any zeros in the normal to avoid divide by zero issues
     # TODO: clarify why this changed
